@@ -1,0 +1,22 @@
+import java.util.Arrays;
+
+class Solution {
+    public int solution(int[][] dots) {
+        double [][] tmp = new double[dots.length][dots[0].length];
+        for(int i=0;i<dots.length;i++){
+            for(int j=0;j<dots[0].length;j++){
+                tmp[i][j]=dots[i][j];
+            }
+        }
+        if(Math.abs(tmp[0][1]-tmp[1][1])/Math.abs(tmp[0][0]-tmp[1][0])==Math.abs(tmp[2][1]-tmp[3][1])/Math.abs(tmp[2][0]-tmp[3][0])){
+            return 1;
+        }
+        if(Math.abs(tmp[0][1]-tmp[2][1])/Math.abs(tmp[0][0]-dots[2][0])==Math.abs(tmp[1][1]-tmp[3][1])/Math.abs(tmp[1][0]-tmp[3][0])){
+            return 1;
+        }
+        if(Math.abs(tmp[0][1]-tmp[3][1])/Math.abs(tmp[0][0]-tmp[3][0])==Math.abs(tmp[1][1]-tmp[2][1])/Math.abs(tmp[1][0]-tmp[2][0])){
+            return 1;
+        }
+        return 0;
+    }
+}

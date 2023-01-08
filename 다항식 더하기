@@ -1,0 +1,47 @@
+import java.util.regex.Pattern;
+
+class Solution {
+    public String solution(String polynomial) {
+        String pattern = "^[0-9]*$";
+
+        String[] arr = polynomial.split(" \\+ ");
+
+        int xIndex = 0;
+        int numberIndex = 0;
+
+        for(String number : arr){
+            if(!number.contains("x")&& !Pattern.matches(pattern, number)){
+                return "0";
+            }
+        }
+
+        for (String number : arr) {
+            if (number.equals("x")) {
+                xIndex+=1;
+                continue;
+            }
+            if(number.contains("x")){
+                xIndex+=Integer.parseInt(number.substring(0,number.length()-1));
+                continue;
+            }
+            numberIndex+=Integer.parseInt(number);
+        }
+
+        if(xIndex==0&&numberIndex==0){
+            return "0";
+        }
+        if(xIndex==0){
+            return String.valueOf(numberIndex);
+        }
+        if(numberIndex==0){
+            if(xIndex==1){
+                return "x";
+            }
+            return xIndex+"x";
+        }
+        if(xIndex==1){
+            return "x" + " + " + numberIndex;
+        }
+        return xIndex+"x" + " + " + numberIndex;
+    }
+}

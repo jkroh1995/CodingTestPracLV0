@@ -1,0 +1,52 @@
+class Solution {
+    public int solution(int[][] board) {
+        int answer = 0;
+        //상하좌우로 1씩 늘린 배열을 만듦
+        int [][] tmp = new int[board.length+2][board[0].length+2];
+        for(int i=1;i<tmp.length-1;i++){
+            for(int j=1;j<tmp[0].length-1;j++){
+                tmp[i][j]=board[i-1][j-1];
+            }
+        }
+        
+        //위험지역이면 2로 변경
+        for(int i=1;i<tmp.length-1;i++){
+            for(int j=1;j<tmp[0].length-1;j++){
+                if(tmp[i][j]==1){
+                    if(tmp[i-1][j-1]==0){
+                        tmp[i-1][j-1]=2;
+                    }
+                    if(tmp[i-1][j]==0){
+                        tmp[i-1][j]=2;
+                    }
+                    if(tmp[i-1][j+1]==0){
+                        tmp[i-1][j+1]=2;
+                    }
+                    if(tmp[i][j-1]==0){
+                        tmp[i][j-1]=2;
+                    }
+                    if(tmp[i][j+1]==0){
+                        tmp[i][j+1]=2;
+                    }
+                    if(tmp[i+1][j-1]==0){
+                        tmp[i+1][j-1]=2;
+                    }
+                    if(tmp[i+1][j]==0){
+                        tmp[i+1][j]=2;
+                    }
+                    if(tmp[i+1][j+1]==0){
+                        tmp[i+1][j+1]=2;
+                    }
+                }
+            }
+        }
+        for(int i=1;i<tmp.length-1;i++){
+            for(int j=1;j<tmp[0].length-1;j++){
+                if(tmp[i][j]==0){
+                    answer++;
+                }
+            }
+        }
+        return answer;
+    }
+}
